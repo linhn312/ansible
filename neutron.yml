@@ -1,0 +1,13 @@
+- name: play with ansible openstack
+  hosts: openstack
+  tasks:
+  - name: create new network
+    os_network:
+      name: ansible_net
+      state: present
+      auth:
+        auth_url: http://controller:35357/v3
+        username: admin
+        password: 123456
+        project_name: Default
+    register: ansible_net

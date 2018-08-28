@@ -1,0 +1,19 @@
+---
+# tasks file for webapp
+- name: install flask
+  pip: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - flask
+  - flask-mysql
+
+- name: copy app.py
+  copy:
+    src: /root/ansible/simple-webapp/app.py
+    dest: /opt/app.py
+    mode: 777
+- name: start flask
+  shell: FLASK_APP=app.py nohup flask run --host=0.0.0.0
+  args:
+    chdir: /opt/

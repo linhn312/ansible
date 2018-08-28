@@ -1,0 +1,6 @@
+- name: install python
+  hosts: target*
+  roles:
+    - install-python
+    - db
+    - webapp
